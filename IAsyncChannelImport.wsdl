@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns2="http://bip.bee.kz/AsyncChannel/v10/Types" xmlns:ns1="http://bip.bee.kz/AsyncChannel/v10/Interfaces" name="IAsyncChannel" targetNamespace="http://bip.bee.kz/AsyncChannel/v10/Interfaces">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://bip.bee.kz/common/v10/Types" targetNamespace="http://bip.bee.kz/common/v10/Types" version="1.0">
+
+  <xs:element name="errorInfo" type="tns:ErrorInfo"/>
+
+  <xs:complexType name="SenderInfo">
+    <xs:sequence>
+      <xs:element name="senderId" type="xs:string"/>
+      <xs:element minOccurs="0" name="password" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Property">
+    <xs:sequence>
+      <xs:element name="key" type="xs:string"/>
+      <xs:element name="value" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MessageData">
+    <xs:sequence>
+      <xs:element name="data" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ErrorInfo">
+    <xs:sequence>
+      <xs:element name="errorCode" type="xs:string"/>
+      <xs:element name="errorMessage" type="xs:string"/>
+      <xs:element minOccurs="0" name="errorData" type="xs:string"/>
+      <xs:element name="errorDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="subError" type="tns:ErrorInfo"/>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DeliveryNotification">
+    <xs:sequence>
+      <xs:element name="messageId" type="xs:string"/>
+      <xs:element name="serviceId" type="xs:string"/>
+      <xs:element name="notificationDate" type="xs:dateTime"/>
+      <xs:element name="deliveryStatus" type="tns:DeliveryStatusInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DeliveryStatusInfo">
+    <xs:sequence>
+      <xs:element name="receiveStatus" type="xs:string"/>
+      <xs:element name="statusDate" type="xs:dateTime"/>
+      <xs:element name="resendMessage" type="xs:string"/>
+      <xs:element minOccurs="0" name="error" type="tns:ErrorInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MessageStatusInfo">
+    <xs:sequence>
+      <xs:element name="statusCode" type="xs:string"/>
+      <xs:element name="statusMessage" type="xs:string"/>
+      <xs:element name="statusDate" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ChangeStatusNotification">
+    <xs:sequence>
+      <xs:element name="notificationId" type="xs:string"/>
+      <xs:element name="messageId" type="xs:string"/>
+      <xs:element name="notificationDate" type="xs:dateTime"/>
+      <xs:element name="messageState" type="xs:string"/>
+      <xs:element name="status" type="tns:MessageStatusInfo"/>
+      <xs:element minOccurs="0" name="error" type="tns:ErrorInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="StatusInfo">
+    <xs:sequence>
+      <xs:element name="code" type="xs:string"/>
+      <xs:element name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="MessageState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ON_DELIVERY"/>
+      <xs:enumeration value="DELIVERED"/>
+      <xs:enumeration value="NOT_DELIVERED"/>
+      <xs:enumeration value="DELIVERY_STOPPED"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://bip.bee.kz/AsyncChannel/v10/ITypes" xmlns:ns1="http://bip.bee.kz/common/v10/Types" targetNamespace="http://bip.bee.kz/AsyncChannel/v10/Types" version="1.0">
+
+  <xs:import namespace="http://bip.bee.kz/common/v10/Types"/>
+
+  <xs:import namespace="http://bip.bee.kz/AsyncChannel/v10/ITypes"/>
+
+  <xs:element name="getMessageStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="request" nillable="true" type="ns2:AsyncGetMessageStatusRequest"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getMessageStatusFault1_getMessageStatusFault" type="ns1:ErrorInfo"/>
+
+  <xs:element name="getMessageStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="response" nillable="true" type="ns2:AsyncGetMessageStatusResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getMessages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="request" nillable="true" type="ns2:AsyncGetMessagesRequest"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getMessagesFault1_getMessagesFault" type="ns1:ErrorInfo"/>
+
+  <xs:element name="getMessagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="response" nillable="true" type="ns2:AsyncGetMessagesResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="sendDeliveryNotification">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="request" nillable="true" type="ns2:AsyncSendDeliveryNotificationRequest"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="sendDeliveryNotificationFault1_sendDeliveryNotificationFault" type="ns1:ErrorInfo"/>
+
+  <xs:element name="sendDeliveryNotificationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="response" nillable="true" type="ns2:AsyncSendDeliveryNotificationResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="sendMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="request" nillable="true" type="ns2:AsyncSendMessageRequest"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="sendMessageFault1_sendMessageFault" type="ns1:ErrorInfo"/>
+
+  <xs:element name="sendMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="response" nillable="true" type="ns2:AsyncSendMessageResponse"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://bip.bee.kz/AsyncChannel/v10/ITypes" xmlns:ns1="http://bip.bee.kz/common/v10/Types" targetNamespace="http://bip.bee.kz/AsyncChannel/v10/ITypes" version="1.0">
+
+  <xs:import namespace="http://bip.bee.kz/common/v10/Types"/>
+
+  <xs:complexType name="AsyncGetMessagesRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="messageId" type="xs:string"/>
+      <xs:element minOccurs="0" name="correlationId" type="xs:string"/>
+      <xs:element minOccurs="0" name="requestDate" type="xs:dateTime"/>
+      <xs:element name="serviceId" type="xs:string"/>
+      <xs:element minOccurs="0" name="sender" type="ns1:SenderInfo"/>
+      <xs:element minOccurs="0" name="amount" type="xs:int"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="properties" nillable="true" type="ns1:Property"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AsyncGetMessagesResponse">
+    <xs:sequence>
+      <xs:element name="responseDate" type="xs:dateTime"/>
+      <xs:element name="sessionId" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="messages" nillable="true" type="tns:AsyncMessage"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AsyncMessage">
+    <xs:sequence>
+      <xs:element name="messageInfo" type="tns:AsyncMessageInfo"/>
+      <xs:element name="messageData" type="ns1:MessageData"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AsyncMessageInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="messageId" type="xs:string"/>
+      <xs:element minOccurs="0" name="correlationId" type="xs:string"/>
+      <xs:element name="serviceId" type="xs:string"/>
+      <xs:element name="messageType" type="xs:string"/>
+      <xs:element minOccurs="0" name="routeId" type="xs:string"/>
+      <xs:element name="messageDate" type="xs:dateTime"/>
+      <xs:element name="sender" type="ns1:SenderInfo"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="properties" nillable="true" type="ns1:Property"/>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AsyncSendDeliveryNotificationRequest">
+    <xs:sequence>
+      <xs:element name="notification" type="ns1:DeliveryNotification"/>
+      <xs:element name="requestDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="sender" type="ns1:SenderInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AsyncSendDeliveryNotificationResponse">
+    <xs:sequence>
+      <xs:element name="notificationId" type="xs:string"/>
+      <xs:element name="responseDate" type="xs:dateTime"/>
+      <xs:element name="sessionId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AsyncGetMessageStatusRequest">
+    <xs:sequence>
+      <xs:element name="messageId" type="xs:string"/>
+      <xs:element name="requestDate" type="xs:dateTime"/>
+      <xs:element name="sender" type="ns1:SenderInfo"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="properties" nillable="true" type="ns1:Property"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AsyncGetMessageStatusResponse">
+    <xs:sequence>
+      <xs:element name="messageState" type="xs:string"/>
+      <xs:element name="status" type="ns1:MessageStatusInfo"/>
+      <xs:element name="responseDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AsyncSendMessageRequest">
+    <xs:sequence>
+      <xs:element name="messageInfo" type="tns:AsyncMessageInfo"/>
+      <xs:element name="messageData" type="ns1:MessageData"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AsyncSendMessageResponse">
+    <xs:sequence>
+      <xs:element name="messageId" type="xs:string"/>
+      <xs:element name="correlationId" type="xs:string"/>
+      <xs:element name="responseDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AsyncChangeStatusNotifyResponse">
+    <xs:sequence>
+      <xs:element name="responseDate" type="xs:dateTime"/>
+      <xs:element name="sessionId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AsyncChangeStatusNotifyRequest">
+    <xs:sequence>
+      <xs:element name="notification" type="ns1:ChangeStatusNotification"/>
+      <xs:element name="requestDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="SendDeliveryNotificationSendDeliveryNotificationFaultMsg">
+    <wsdl:part element="ns2:sendDeliveryNotificationFault1_sendDeliveryNotificationFault" name="SendDeliveryNotificationSendDeliveryNotificationFaultMsg">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessageResponse">
+    <wsdl:part element="ns2:sendMessageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMessages">
+    <wsdl:part element="ns2:getMessages" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMessagesResponse">
+    <wsdl:part element="ns2:getMessagesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SendMessageSendMessageFaultMsg">
+    <wsdl:part element="ns2:sendMessageFault1_sendMessageFault" name="SendMessageSendMessageFaultMsg">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetMessageStatusGetMessageStatusFaultMsg">
+    <wsdl:part element="ns2:getMessageStatusFault1_getMessageStatusFault" name="GetMessageStatusGetMessageStatusFaultMsg">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendDeliveryNotification">
+    <wsdl:part element="ns2:sendDeliveryNotification" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMessageStatus">
+    <wsdl:part element="ns2:getMessageStatus" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMessageStatusResponse">
+    <wsdl:part element="ns2:getMessageStatusResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendMessage">
+    <wsdl:part element="ns2:sendMessage" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetMessagesGetMessagesFaultMsg">
+    <wsdl:part element="ns2:getMessagesFault1_getMessagesFault" name="GetMessagesGetMessagesFaultMsg">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendDeliveryNotificationResponse">
+    <wsdl:part element="ns2:sendDeliveryNotificationResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IAsyncChannel">
+    <wsdl:operation name="getMessages">
+      <wsdl:input message="ns1:getMessages" name="getMessages">
+    </wsdl:input>
+      <wsdl:output message="ns1:getMessagesResponse" name="getMessagesResponse">
+    </wsdl:output>
+      <wsdl:fault message="ns1:GetMessagesGetMessagesFaultMsg" name="GetMessagesGetMessagesFaultMsg">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="sendDeliveryNotification">
+      <wsdl:input message="ns1:sendDeliveryNotification" name="sendDeliveryNotification">
+    </wsdl:input>
+      <wsdl:output message="ns1:sendDeliveryNotificationResponse" name="sendDeliveryNotificationResponse">
+    </wsdl:output>
+      <wsdl:fault message="ns1:SendDeliveryNotificationSendDeliveryNotificationFaultMsg" name="SendDeliveryNotificationSendDeliveryNotificationFaultMsg">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getMessageStatus">
+      <wsdl:input message="ns1:getMessageStatus" name="getMessageStatus">
+    </wsdl:input>
+      <wsdl:output message="ns1:getMessageStatusResponse" name="getMessageStatusResponse">
+    </wsdl:output>
+      <wsdl:fault message="ns1:GetMessageStatusGetMessageStatusFaultMsg" name="GetMessageStatusGetMessageStatusFaultMsg">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessage">
+      <wsdl:input message="ns1:sendMessage" name="sendMessage">
+    </wsdl:input>
+      <wsdl:output message="ns1:sendMessageResponse" name="sendMessageResponse">
+    </wsdl:output>
+      <wsdl:fault message="ns1:SendMessageSendMessageFaultMsg" name="SendMessageSendMessageFaultMsg">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
