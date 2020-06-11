@@ -124,5 +124,21 @@ class ImportDataEgovServiceService extends \SoapClient
     {
       return $this->__soapCall('sendMessage', array($parameters));
     }
+    
+    function __doRequest($request, $location, $action, $version, $one_way = 0) 
+    {
+         $this->log($request, $location, $action, $version);
 
+         $response = $this->soapClient->__doRequest($request, $location, 
+                                                    $action, $version, 
+                                                    $one_way);
+
+         $this->log($response, $location, $action, $version);
+         return $response;
+    }
+
+    public function log($request, $location, $action, $version)
+    {
+        file_put_contents('soap_.log', $request, FILE_APPEND);
+    }
 }
