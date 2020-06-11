@@ -1,0 +1,22 @@
+AsyncChannelNs\RequestFormImport\TypedTableCellType:
+    properties:
+        dimensions:
+            expose: true
+            access_type: public_method
+            serialized_name: dimensions
+            accessor:
+                getter: getDimensions
+                setter: setDimensions
+            type: array<AsyncChannelNs\RequestFormImport\TypedTableCellType\DimensionsAType\EntryAType>
+            xml_list:
+                inline: false
+                entry_name: entry
+                skip_when_empty: false
+        value:
+            expose: true
+            access_type: public_method
+            serialized_name: value
+            accessor:
+                getter: getValue
+                setter: setValue
+            type: AsyncChannelNs\RequestFormImport\TypedQuestionnaireValueType

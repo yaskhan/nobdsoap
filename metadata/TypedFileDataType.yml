@@ -1,0 +1,29 @@
+AsyncChannelNs\RequestFormImport\TypedFileDataType:
+    properties:
+        base64Data:
+            expose: true
+            access_type: public_method
+            serialized_name: base64Data
+            accessor:
+                getter: getBase64Data
+                setter: setBase64Data
+            type: string
+        filePassportValues:
+            expose: true
+            access_type: public_method
+            serialized_name: filePassportValues
+            accessor:
+                getter: getFilePassportValues
+                setter: setFilePassportValues
+            xml_list:
+                inline: true
+                entry_name: filePassportValues
+            type: array<AsyncChannelNs\RequestFormImport\TypedQuestionnaireValuesType>
+        name:
+            expose: true
+            access_type: public_method
+            serialized_name: name
+            accessor:
+                getter: getName
+                setter: setName
+            type: string

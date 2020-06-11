@@ -1,0 +1,94 @@
+AsyncChannelNs\RequestFormImport\TypedQuestionnaireValueType:
+    properties:
+        boolean:
+            expose: true
+            access_type: public_method
+            serialized_name: boolean
+            accessor:
+                getter: getBoolean
+                setter: setBoolean
+            type: bool
+        complexValue:
+            expose: true
+            access_type: public_method
+            serialized_name: complexValue
+            accessor:
+                getter: getComplexValue
+                setter: setComplexValue
+            xml_list:
+                inline: true
+                entry_name: complexValue
+            type: array<AsyncChannelNs\RequestFormImport\TypedQuestionnaireValuesType>
+        date:
+            expose: true
+            access_type: public_method
+            serialized_name: date
+            accessor:
+                getter: getDate
+                setter: setDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\DateTime
+        domainItemData:
+            expose: true
+            access_type: public_method
+            serialized_name: domainItemData
+            accessor:
+                getter: getDomainItemData
+                setter: setDomainItemData
+            type: AsyncChannelNs\RequestFormImport\DomainItemDataType
+        domainItemDataList:
+            expose: true
+            access_type: public_method
+            serialized_name: domainItemDataList
+            accessor:
+                getter: getDomainItemDataList
+                setter: setDomainItemDataList
+            xml_list:
+                inline: true
+                entry_name: domainItemDataList
+            type: array<AsyncChannelNs\RequestFormImport\DomainItemDataType>
+        fileData:
+            expose: true
+            access_type: public_method
+            serialized_name: fileData
+            accessor:
+                getter: getFileData
+                setter: setFileData
+            type: AsyncChannelNs\RequestFormImport\TypedFileDataType
+        number:
+            expose: true
+            access_type: public_method
+            serialized_name: number
+            accessor:
+                getter: getNumber
+                setter: setNumber
+            type: float
+        string:
+            expose: true
+            access_type: public_method
+            serialized_name: string
+            accessor:
+                getter: getString
+                setter: setString
+            type: string
+        stringList:
+            expose: true
+            access_type: public_method
+            serialized_name: stringList
+            accessor:
+                getter: getStringList
+                setter: setStringList
+            xml_list:
+                inline: true
+                entry_name: stringList
+            type: array<string>
+        tableCells:
+            expose: true
+            access_type: public_method
+            serialized_name: tableCells
+            accessor:
+                getter: getTableCells
+                setter: setTableCells
+            xml_list:
+                inline: true
+                entry_name: tableCells
+            type: array<AsyncChannelNs\RequestFormImport\TypedTableCellType>

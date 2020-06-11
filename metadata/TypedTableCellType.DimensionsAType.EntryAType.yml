@@ -1,0 +1,18 @@
+AsyncChannelNs\RequestFormImport\TypedTableCellType\DimensionsAType\EntryAType:
+    properties:
+        key:
+            expose: true
+            access_type: public_method
+            serialized_name: key
+            accessor:
+                getter: getKey
+                setter: setKey
+            type: string
+        value:
+            expose: true
+            access_type: public_method
+            serialized_name: value
+            accessor:
+                getter: getValue
+                setter: setValue
+            type: string

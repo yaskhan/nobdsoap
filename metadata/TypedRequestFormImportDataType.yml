@@ -1,0 +1,274 @@
+AsyncChannelNs\RequestFormImport\TypedRequestFormImportDataType:
+    properties:
+        externalRequestChainId:
+            expose: true
+            access_type: public_method
+            serialized_name: externalRequestChainId
+            accessor:
+                getter: getExternalRequestChainId
+                setter: setExternalRequestChainId
+            type: string
+        externalRequestId:
+            expose: true
+            access_type: public_method
+            serialized_name: externalRequestId
+            accessor:
+                getter: getExternalRequestId
+                setter: setExternalRequestId
+            type: string
+        negativeResolutionMissingDocumentsListKk:
+            expose: true
+            access_type: public_method
+            serialized_name: negativeResolutionMissingDocumentsListKk
+            accessor:
+                getter: getNegativeResolutionMissingDocumentsListKk
+                setter: setNegativeResolutionMissingDocumentsListKk
+            type: string
+        negativeResolutionMissingDocumentsListRu:
+            expose: true
+            access_type: public_method
+            serialized_name: negativeResolutionMissingDocumentsListRu
+            accessor:
+                getter: getNegativeResolutionMissingDocumentsListRu
+                setter: setNegativeResolutionMissingDocumentsListRu
+            type: string
+        negativeResolutionReason:
+            expose: true
+            access_type: public_method
+            serialized_name: negativeResolutionReason
+            accessor:
+                getter: getNegativeResolutionReason
+                setter: setNegativeResolutionReason
+            type: string
+        negativeResolutionReasonKkValue:
+            expose: true
+            access_type: public_method
+            serialized_name: negativeResolutionReasonKkValue
+            accessor:
+                getter: getNegativeResolutionReasonKkValue
+                setter: setNegativeResolutionReasonKkValue
+            type: string
+        negativeResolutionReasonRuValue:
+            expose: true
+            access_type: public_method
+            serialized_name: negativeResolutionReasonRuValue
+            accessor:
+                getter: getNegativeResolutionReasonRuValue
+                setter: setNegativeResolutionReasonRuValue
+            type: string
+        negativeResolutionReasonTextKk:
+            expose: true
+            access_type: public_method
+            serialized_name: negativeResolutionReasonTextKk
+            accessor:
+                getter: getNegativeResolutionReasonTextKk
+                setter: setNegativeResolutionReasonTextKk
+            type: string
+        negativeResolutionReasonTextRu:
+            expose: true
+            access_type: public_method
+            serialized_name: negativeResolutionReasonTextRu
+            accessor:
+                getter: getNegativeResolutionReasonTextRu
+                setter: setNegativeResolutionReasonTextRu
+            type: string
+        processingStatus:
+            expose: true
+            access_type: public_method
+            serialized_name: processingStatus
+            accessor:
+                getter: getProcessingStatus
+                setter: setProcessingStatus
+            type: string
+        requestOriginSystemId:
+            expose: true
+            access_type: public_method
+            serialized_name: requestOriginSystemId
+            accessor:
+                getter: getRequestOriginSystemId
+                setter: setRequestOriginSystemId
+            type: string
+        requesterBin:
+            expose: true
+            access_type: public_method
+            serialized_name: requesterBin
+            accessor:
+                getter: getRequesterBin
+                setter: setRequesterBin
+            type: string
+        requesterBirthDate:
+            expose: true
+            access_type: public_method
+            serialized_name: requesterBirthDate
+            accessor:
+                getter: getRequesterBirthDate
+                setter: setRequesterBirthDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\DateTime
+        requesterDelegateBirthDate:
+            expose: true
+            access_type: public_method
+            serialized_name: requesterDelegateBirthDate
+            accessor:
+                getter: getRequesterDelegateBirthDate
+                setter: setRequesterDelegateBirthDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\DateTime
+        requesterDelegateFirstName:
+            expose: true
+            access_type: public_method
+            serialized_name: requesterDelegateFirstName
+            accessor:
+                getter: getRequesterDelegateFirstName
+                setter: setRequesterDelegateFirstName
+            type: string
+        requesterDelegateIin:
+            expose: true
+            access_type: public_method
+            serialized_name: requesterDelegateIin
+            accessor:
+                getter: getRequesterDelegateIin
+                setter: setRequesterDelegateIin
+            type: string
+        requesterDelegateLastName:
+            expose: true
+            access_type: public_method
+            serialized_name: requesterDelegateLastName
+            accessor:
+                getter: getRequesterDelegateLastName
+                setter: setRequesterDelegateLastName
+            type: string
+        requesterDelegateMiddleName:
+            expose: true
+            access_type: public_method
+            serialized_name: requesterDelegateMiddleName
+            accessor:
+                getter: getRequesterDelegateMiddleName
+                setter: setRequesterDelegateMiddleName
+            type: string
+        requesterFirstName:
+            expose: true
+            access_type: public_method
+            serialized_name: requesterFirstName
+            accessor:
+                getter: getRequesterFirstName
+                setter: setRequesterFirstName
+            type: string
+        requesterIin:
+            expose: true
+            access_type: public_method
+            serialized_name: requesterIin
+            accessor:
+                getter: getRequesterIin
+                setter: setRequesterIin
+            type: string
+        requesterLastName:
+            expose: true
+            access_type: public_method
+            serialized_name: requesterLastName
+            accessor:
+                getter: getRequesterLastName
+                setter: setRequesterLastName
+            type: string
+        requesterMiddleName:
+            expose: true
+            access_type: public_method
+            serialized_name: requesterMiddleName
+            accessor:
+                getter: getRequesterMiddleName
+                setter: setRequesterMiddleName
+            type: string
+        resolutionDate:
+            expose: true
+            access_type: public_method
+            serialized_name: resolutionDate
+            accessor:
+                getter: getResolutionDate
+                setter: setResolutionDate
+            type: GoetasWebservices\Xsd\XsdToPhp\XMLSchema\DateTime
+        resolutionType:
+            expose: true
+            access_type: public_method
+            serialized_name: resolutionType
+            accessor:
+                getter: getResolutionType
+                setter: setResolutionType
+            type: string
+        serviceProviderAssigneeFullName:
+            expose: true
+            access_type: public_method
+            serialized_name: serviceProviderAssigneeFullName
+            accessor:
+                getter: getServiceProviderAssigneeFullName
+                setter: setServiceProviderAssigneeFullName
+            type: string
+        serviceProviderAssigneePositionKk:
+            expose: true
+            access_type: public_method
+            serialized_name: serviceProviderAssigneePositionKk
+            accessor:
+                getter: getServiceProviderAssigneePositionKk
+                setter: setServiceProviderAssigneePositionKk
+            type: string
+        serviceProviderAssigneePositionRu:
+            expose: true
+            access_type: public_method
+            serialized_name: serviceProviderAssigneePositionRu
+            accessor:
+                getter: getServiceProviderAssigneePositionRu
+                setter: setServiceProviderAssigneePositionRu
+            type: string
+        serviceProviderAssigneeTelephoneNumber:
+            expose: true
+            access_type: public_method
+            serialized_name: serviceProviderAssigneeTelephoneNumber
+            accessor:
+                getter: getServiceProviderAssigneeTelephoneNumber
+                setter: setServiceProviderAssigneeTelephoneNumber
+            type: string
+        serviceProviderBin:
+            expose: true
+            access_type: public_method
+            serialized_name: serviceProviderBin
+            accessor:
+                getter: getServiceProviderBin
+                setter: setServiceProviderBin
+            type: string
+        serviceProviderIin:
+            expose: true
+            access_type: public_method
+            serialized_name: serviceProviderIin
+            accessor:
+                getter: getServiceProviderIin
+                setter: setServiceProviderIin
+            type: string
+        serviceProviderLocationCode:
+            expose: true
+            access_type: public_method
+            serialized_name: serviceProviderLocationCode
+            accessor:
+                getter: getServiceProviderLocationCode
+                setter: setServiceProviderLocationCode
+            type: string
+        serviceType:
+            expose: true
+            access_type: public_method
+            serialized_name: serviceType
+            accessor:
+                getter: getServiceType
+                setter: setServiceType
+            type: string
+        serviceTypeKkName:
+            expose: true
+            access_type: public_method
+            serialized_name: serviceTypeKkName
+            accessor:
+                getter: getServiceTypeKkName
+                setter: setServiceTypeKkName
+            type: string
+        serviceTypeRuName:
+            expose: true
+            access_type: public_method
+            serialized_name: serviceTypeRuName
+            accessor:
+                getter: getServiceTypeRuName
+                setter: setServiceTypeRuName
+            type: string

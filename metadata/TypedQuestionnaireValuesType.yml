@@ -1,0 +1,21 @@
+AsyncChannelNs\RequestFormImport\TypedQuestionnaireValuesType:
+    properties:
+        code:
+            expose: true
+            access_type: public_method
+            serialized_name: code
+            accessor:
+                getter: getCode
+                setter: setCode
+            type: string
+        values:
+            expose: true
+            access_type: public_method
+            serialized_name: values
+            accessor:
+                getter: getValues
+                setter: setValues
+            xml_list:
+                inline: true
+                entry_name: values
+            type: array<AsyncChannelNs\RequestFormImport\TypedQuestionnaireValueType>

@@ -1,0 +1,20 @@
+# config.yml
+# Linux Users: PHP Namespaces use back slash \ rather than a forward slash /
+# So for destinations_php, the namespace would be TestNs\MyApp
+
+xsd2php:
+  namespaces:
+    'http://bip.bee.kz/AsyncChannel/': 'AsyncChannelNs\RequestFormImport'
+  destinations_php: 
+    'AsyncChannelNs\RequestFormImport': output2\\src  #  on Windows
+
+  destinations_jms:
+    'AsyncChannelNs\RequestFormImport': output2\\metadata
+ 
+
+  naming_strategy: short # optional and default
+  path_generator: psr4 # optional and default
+#  known_locations: # optional
+#    "http://www.example.org/test/somefile.xsd": somefile.xsd
+#  known_namespace_locations: # optional
+#    "urn:veloconnect:catalog-1.1": xsd/catalog-1.1.xsd

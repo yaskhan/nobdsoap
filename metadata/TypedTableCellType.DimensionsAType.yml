@@ -1,0 +1,13 @@
+AsyncChannelNs\RequestFormImport\TypedTableCellType\DimensionsAType:
+    properties:
+        entry:
+            expose: true
+            access_type: public_method
+            serialized_name: entry
+            accessor:
+                getter: getEntry
+                setter: setEntry
+            xml_list:
+                inline: true
+                entry_name: entry
+            type: array<AsyncChannelNs\RequestFormImport\TypedTableCellType\DimensionsAType\EntryAType>

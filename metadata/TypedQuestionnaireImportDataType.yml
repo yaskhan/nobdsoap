@@ -1,0 +1,40 @@
+AsyncChannelNs\RequestFormImport\TypedQuestionnaireImportDataType:
+    properties:
+        deletedValues:
+            expose: true
+            access_type: public_method
+            serialized_name: deletedValues
+            accessor:
+                getter: getDeletedValues
+                setter: setDeletedValues
+            xml_list:
+                inline: true
+                entry_name: deletedValues
+            type: array<string>
+        id:
+            expose: true
+            access_type: public_method
+            serialized_name: id
+            accessor:
+                getter: getId
+                setter: setId
+            type: int
+        importSource:
+            expose: true
+            access_type: public_method
+            serialized_name: importSource
+            accessor:
+                getter: getImportSource
+                setter: setImportSource
+            type: string
+        updatedValues:
+            expose: true
+            access_type: public_method
+            serialized_name: updatedValues
+            accessor:
+                getter: getUpdatedValues
+                setter: setUpdatedValues
+            xml_list:
+                inline: true
+                entry_name: updatedValues
+            type: array<AsyncChannelNs\RequestFormImport\TypedQuestionnaireValuesType>

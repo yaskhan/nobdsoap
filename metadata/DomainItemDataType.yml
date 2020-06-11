@@ -1,0 +1,26 @@
+AsyncChannelNs\RequestFormImport\DomainItemDataType:
+    properties:
+        code:
+            expose: true
+            access_type: public_method
+            serialized_name: code
+            accessor:
+                getter: getCode
+                setter: setCode
+            type: string
+        kkValue:
+            expose: true
+            access_type: public_method
+            serialized_name: kkValue
+            accessor:
+                getter: getKkValue
+                setter: setKkValue
+            type: string
+        ruValue:
+            expose: true
+            access_type: public_method
+            serialized_name: ruValue
+            accessor:
+                getter: getRuValue
+                setter: setRuValue
+            type: string
