@@ -23,17 +23,11 @@ class TypedQuestionnaireImportDataType
      */
     private $id = null;
 
-    /**
-     * @var string $importSource
-     */
-    private $importSource = null;
 
     /**
-     * @var \AsyncChannelNs\RequestFormImport\TypedQuestionnaireValuesType[] $updatedValues
+     * @var \ArrayObject $updatedValues
      */
-    private $updatedValues = [
-        
-    ];
+    private $typedRequestFormImportData;
 
     /**
      * Adds as deletedValues
@@ -120,7 +114,7 @@ class TypedQuestionnaireImportDataType
      */
     public function getImportSource()
     {
-        return $this->importSource;
+        return $this->typedRequestFormImportData->importSource;
     }
 
     /**
@@ -131,7 +125,7 @@ class TypedQuestionnaireImportDataType
      */
     public function setImportSource($importSource)
     {
-        $this->importSource = $importSource;
+        $this->typedRequestFormImportData->append(new \SoapVar('<importSource>'.$importSource.'</importSource>', XSD_ANYXML));
         return $this;
     }
 
@@ -176,7 +170,7 @@ class TypedQuestionnaireImportDataType
      */
     public function getUpdatedValues()
     {
-        return $this->updatedValues;
+        return $this->typedRequestFormImportData;
     }
 
     /**
@@ -187,8 +181,14 @@ class TypedQuestionnaireImportDataType
      */
     public function setUpdatedValues(array $updatedValues)
     {
-        $this->updatedValues = $updatedValues;
+        foreach($updatedValues as $a) {
+            $this->typedRequestFormImportData->append(new \SoapVar($a, SOAP_ENC_OBJECT, null, null, 'updatedValues'));
+        }
         return $this;
+    }
+    
+    function __construct() {
+        $this->typedRequestFormImportData = new \ArrayObject();
     }
 
 

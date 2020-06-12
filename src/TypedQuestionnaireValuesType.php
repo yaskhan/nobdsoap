@@ -17,11 +17,9 @@ class TypedQuestionnaireValuesType
     private $code = null;
 
     /**
-     * @var \AsyncChannelNs\RequestFormImport\TypedQuestionnaireValueType[] $values
+     * @var \ArrayObject $values
      */
-    private $values = [
-        
-    ];
+    private $values;
 
     /**
      * Gets as code
@@ -53,7 +51,11 @@ class TypedQuestionnaireValuesType
      */
     public function addToValues(\AsyncChannelNs\RequestFormImport\TypedQuestionnaireValueType $values)
     {
-        $this->values[] = $values;
+        foreach ($this->objectToArray($values) as $ark => $arv) {
+            if(!empty($arv)) {
+                $this->values->append(new \SoapVar("<$ark>$arv</$ark>", XSD_ANYXML));
+            }
+        }
         return $this;
     }
 
@@ -97,10 +99,27 @@ class TypedQuestionnaireValuesType
      */
     public function setValues(array $values)
     {
-        $this->values = $values;
+        foreach($values as $a) {
+            foreach ($this->objectToArray($a) as $ark => $arv) {
+                if(!empty($arv)) {
+                    $this->values->append(new \SoapVar("<$ark>$arv</$ark>", XSD_ANYXML));
+                }
+            }
+        }
         return $this;
     }
-
+    
+    public function objectToArray($object) : array {
+        $output = [];
+        foreach ((array) $object as $key => $value) {
+            $output[preg_replace('/\000(.*)\000/', '', $key)] = $value;
+        }
+        return $output;
+    }
+    
+    function __construct() {
+        $this->values = new \ArrayObject();
+    }
 
 }
 

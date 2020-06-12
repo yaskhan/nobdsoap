@@ -10,3 +10,4 @@ Vagrantfile
 .idea
 .php_cs.cache
 soap_.log
+composer.lock
