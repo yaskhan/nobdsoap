@@ -72,12 +72,12 @@ class TypedRequestFormImportDataType extends TypedQuestionnaireImportDataType
     private $requesterBin = null;
 
     /**
-     * @var \DateTime $requesterBirthDate
+     * @var string $requesterBirthDate
      */
     private $requesterBirthDate = null;
 
     /**
-     * @var \DateTime $requesterDelegateBirthDate
+     * @var string $requesterDelegateBirthDate
      */
     private $requesterDelegateBirthDate = null;
 
@@ -122,7 +122,7 @@ class TypedRequestFormImportDataType extends TypedQuestionnaireImportDataType
     private $requesterMiddleName = null;
 
     /**
-     * @var \DateTime $resolutionDate
+     * @var string $resolutionDate
      */
     private $resolutionDate = null;
 
@@ -463,7 +463,7 @@ class TypedRequestFormImportDataType extends TypedQuestionnaireImportDataType
      */
     public function setRequesterBirthDate(\DateTime $requesterBirthDate)
     {
-        $this->requesterBirthDate = $requesterBirthDate;
+        $this->requesterBirthDate = $requesterBirthDate->format(\DateTime::ATOM);
         return $this;
     }
 
@@ -485,7 +485,7 @@ class TypedRequestFormImportDataType extends TypedQuestionnaireImportDataType
      */
     public function setRequesterDelegateBirthDate(\DateTime $requesterDelegateBirthDate)
     {
-        $this->requesterDelegateBirthDate = $requesterDelegateBirthDate;
+        $this->requesterDelegateBirthDate = $requesterDelegateBirthDate->format(\DateTime::ATOM);
         return $this;
     }
 
@@ -683,7 +683,7 @@ class TypedRequestFormImportDataType extends TypedQuestionnaireImportDataType
      */
     public function setResolutionDate(\DateTime $resolutionDate)
     {
-        $this->resolutionDate = $resolutionDate;
+        $this->resolutionDate = $resolutionDate->format(\DateTime::ATOM);
         return $this;
     }
 

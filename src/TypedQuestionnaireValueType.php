@@ -24,7 +24,7 @@ class TypedQuestionnaireValueType
     ];
 
     /**
-     * @var \DateTime $date
+     * @var string $date
      */
     private $date = null;
 
@@ -165,7 +165,7 @@ class TypedQuestionnaireValueType
      */
     public function setDate(\DateTime $date)
     {
-        $this->date = $date;
+        $this->date = $date->format(\DateTime::ATOM);
         return $this;
     }
 
