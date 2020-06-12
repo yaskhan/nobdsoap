@@ -19,3 +19,14 @@
 
 `other/` - Сгенерированные файлы утилитой из файлов `IAsyncChanel.wsdl`
 
+
+
+Статьи для ознакомления:
+
+https://habr.com/ru/post/187390/
+
+https://compress.ru/article.aspx?id=10152
+
+https://github.com/robrichards/xmlseclibs
+
+
