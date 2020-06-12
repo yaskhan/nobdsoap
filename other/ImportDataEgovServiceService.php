@@ -92,7 +92,7 @@ class ImportDataEgovServiceService extends \SoapClient
      */
     public function getMessages(getMessages $parameters)
     {
-      return $this->__soapCall('getMessages', array($parameters));
+      return $this->__soapCall('getMessages', array($parameters), null, new SoapHeader());
     }
 
     /**
@@ -102,7 +102,7 @@ class ImportDataEgovServiceService extends \SoapClient
      */
     public function sendDeliveryNotification(sendDeliveryNotification $parameters)
     {
-      return $this->__soapCall('sendDeliveryNotification', array($parameters));
+      return $this->__soapCall('sendDeliveryNotification', array($parameters), null, new SoapHeader());
     }
 
     /**
@@ -112,7 +112,7 @@ class ImportDataEgovServiceService extends \SoapClient
      */
     public function getMessageStatus(getMessageStatus $parameters)
     {
-      return $this->__soapCall('getMessageStatus', array($parameters));
+      return $this->__soapCall('getMessageStatus', array($parameters), null, new SoapHeader());
     }
 
     /**
@@ -122,9 +122,9 @@ class ImportDataEgovServiceService extends \SoapClient
      */
     public function sendMessage(sendMessage $parameters)
     {
-      return $this->__soapCall('sendMessage', array($parameters));
+      return $this->__soapCall('sendMessage', array($parameters), null, new SoapHeader());
     }
-    
+    /*
     function __doRequest($request, $location, $action, $version, $one_way = 0) 
     {
          $this->log($request, $location, $action, $version);
@@ -136,7 +136,7 @@ class ImportDataEgovServiceService extends \SoapClient
          $this->log($response, $location, $action, $version);
          return $response;
     }
-
+*/
     public function log($request, $location, $action, $version)
     {
         file_put_contents('soap_.log', $request, FILE_APPEND);
