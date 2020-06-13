@@ -31,6 +31,14 @@ include_once('AsyncSendMessageResponse.php');
 include_once('AsyncChangeStatusNotifyResponse.php');
 include_once('AsyncChangeStatusNotifyRequest.php');
 
+require __DIR__ . '/../vendor/autoload.php';
+
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use RobRichards\XMLSecLibs\XMLSecurityKey;
+
+define('PRIVATE_KEY', dirname(__FILE__) . '/../pk-private_key.pem');
+define('CERT_FILE', dirname(__FILE__) . '/../cert-public_key.pem');
+
 class ImportDataEgovServiceService extends \SoapClient
 {
 
@@ -124,19 +132,32 @@ class ImportDataEgovServiceService extends \SoapClient
     {
       return $this->__soapCall('sendMessage', array($parameters), null, new SoapHeader());
     }
-    /*
+
     function __doRequest($request, $location, $action, $version, $one_way = 0) 
     {
-         $this->log($request, $location, $action, $version);
+        $dom = new DOMDocument();
+        $dom->loadXML($request);
 
-         $response = $this->soapClient->__doRequest($request, $location, 
-                                                    $action, $version, 
-                                                    $one_way);
-
-         $this->log($response, $location, $action, $version);
-         return $response;
+	$objDSig = new XMLSecurityDSig('ds');
+	$objDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
+	$objDSig->addReference($dom, XMLSecurityDSig::SHA1, ['http://www.w3.org/2000/09/xmldsig#enveloped-signature']);
+	$objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, ['type'=>'private']);
+	/* load private key */
+	$objKey->loadKey(PRIVATE_KEY, TRUE);
+	
+	/* if key has Passphrase, set it using $objKey->passphrase = <passphrase> " */
+	
+	$objDSig->sign($objKey);
+	
+	/* Add associated public key */
+	$objDSig->add509Cert(CERT_FILE, true, false, ['issuerSerial' => true, 'subjectName' => true]);
+	$objDSig->appendSignature($dom->getElementsByTagName('typedRequestFormImportData')->item(0));
+       
+        $request = $dom->saveXML();
+        $this->log($request, $location, $action, $version);
+        return parent::__doRequest($request, $location, $action, $version);
     }
-*/
+
     public function log($request, $location, $action, $version)
     {
         file_put_contents('soap_.log', $request, FILE_APPEND);

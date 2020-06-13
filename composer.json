@@ -1,6 +1,7 @@
 {
     "require": {
         "goetas-webservices/xsd2php-runtime": "^0.2.12",
-        "goetas-webservices/xsd2php": "^0.3.11"
+        "goetas-webservices/xsd2php": "^0.3.11",
+		"robrichards/wse-php": "*"
     }
 }
