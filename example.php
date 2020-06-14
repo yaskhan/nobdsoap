@@ -10,6 +10,7 @@ spl_autoload_register(function ($class_name) {
 use AsyncChannelNs\RequestFormImport\TypedRequestFormImportData;
 use AsyncChannelNs\RequestFormImport\TypedQuestionnaireValuesType;
 use AsyncChannelNs\RequestFormImport\TypedQuestionnaireValueType;
+use AsyncChannelNs\RequestFormImport\TypedFileDataType;
 
 ini_set("soap.wsdl_cache_enabled", "0"); // отключаем кеширование WSDL-файла для тестирования
 
@@ -39,6 +40,7 @@ try {
         setUpdKV('country', 'КАЗАХСТАН'),
         /* ... */
         setUpdKV('doc_expirationdate', '2023-02-03', 2),
+        setUpdKV('PMPK_info', 'pasta.txt', 3)
     ]);
     
     $datatr->setExternalRequestChainId('2516594');
@@ -67,8 +69,10 @@ function setUpdKV($key, $val, $type = 1) {
        $tmp3 = $tmp2->setString($val);
     } else if ($type == 2) {
        $tmp3 = $tmp2->setDate(new DateTime($val));
+    } else if ($type == 3) {
+        $tmp3 = $tmp2->setFileData(new TypedFileDataType($val));
     }
-    ///TODO: FILE SAVING
+    
     $tmp->setCode($key);
     $tmp->setValues([$tmp3]);
     return $tmp;

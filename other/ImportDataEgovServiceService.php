@@ -135,6 +135,20 @@ class ImportDataEgovServiceService extends \SoapClient
 
     function __doRequest($request, $location, $action, $version, $one_way = 0) 
     {
+        $request = preg_replace('/<[\/]*BOGUS>/', '', $request);
+
+        $request = $this->integrateCert($request);
+        $this->log($request, $location, $action, $version);
+        return parent::__doRequest($request, $location, $action, $version);
+    }
+
+    public function log($request, $location, $action, $version)
+    {
+        file_put_contents('soap_.log', $request, FILE_APPEND);
+    }
+    
+    private function integrateCert($request)
+    {
         $dom = new DOMDocument();
         $dom->loadXML($request);
 
@@ -153,13 +167,6 @@ class ImportDataEgovServiceService extends \SoapClient
 	$objDSig->add509Cert(CERT_FILE, true, false, ['issuerSerial' => true, 'subjectName' => true]);
 	$objDSig->appendSignature($dom->getElementsByTagName('typedRequestFormImportData')->item(0));
        
-        $request = $dom->saveXML();
-        $this->log($request, $location, $action, $version);
-        return parent::__doRequest($request, $location, $action, $version);
-    }
-
-    public function log($request, $location, $action, $version)
-    {
-        file_put_contents('soap_.log', $request, FILE_APPEND);
+        return $dom->saveXML();
     }
 }

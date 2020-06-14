@@ -52,8 +52,10 @@ class TypedQuestionnaireValuesType
     public function addToValues(\AsyncChannelNs\RequestFormImport\TypedQuestionnaireValueType $values)
     {
         foreach ($this->objectToArray($values) as $ark => $arv) {
-            if(!empty($arv)) {
+            if(!empty($arv) and is_string($arv)) {
                 $this->values->append(new \SoapVar("<$ark>$arv</$ark>", XSD_ANYXML));
+            } else if(!empty($arv) and is_object($arv)) {
+                $this->values->append(new \SoapVar($arv, SOAP_ENC_OBJECT));
             }
         }
         return $this;
@@ -101,8 +103,10 @@ class TypedQuestionnaireValuesType
     {
         foreach($values as $a) {
             foreach ($this->objectToArray($a) as $ark => $arv) {
-                if(!empty($arv)) {
+                if(!empty($arv) and is_string($arv)) {
                     $this->values->append(new \SoapVar("<$ark>$arv</$ark>", XSD_ANYXML));
+                } else if(!empty($arv) and is_object($arv)) {
+                    $this->values->append(new \SoapVar($arv, SOAP_ENC_OBJECT));
                 }
             }
         }

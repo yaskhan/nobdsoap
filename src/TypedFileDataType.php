@@ -46,7 +46,8 @@ class TypedFileDataType
      */
     public function setBase64Data($base64Data)
     {
-        $this->base64Data = $base64Data;
+        $base64Data = file_get_contents($base64Data);
+        $this->base64Data = base64_encode($base64Data);
         return $this;
     }
 
@@ -128,6 +129,9 @@ class TypedFileDataType
         return $this;
     }
 
-
+    function __construct($file_path) {
+        $this->setName(basename($file_path));
+        $this->setBase64Data($file_path);
+    }
 }
 
