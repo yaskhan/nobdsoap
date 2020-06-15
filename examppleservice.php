@@ -46,4 +46,12 @@ $options = ['uri' => "http://{$_SERVER['HTTP_HOST']}/examppleservice.php",
 $server = new SoapServer(null, $options);
 $server->setClass('TestSoapServer');
 $server->setPersistence(SOAP_PERSISTENCE_SESSION);
+
+ob_start();
 $server->handle();
+$out1 = ob_get_contents();
+$out1 = preg_replace("/<[\/]*return.*?>/", '', $out1);
+
+ob_end_clean();
+echo($out1);
+

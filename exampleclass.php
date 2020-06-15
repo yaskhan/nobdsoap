@@ -14,14 +14,9 @@ class TestSoapServer
     {
         $rand = random_int(1, 2);
         if($rand == 1) {
-            return new SoapVar('<response>
-                                    <messageId>123</messageId>
-                                    <correlationId>23</correlationId>
-                                    <responseDate>33</responseDate>
-                                    <sessionId>5545454</sessionId>
-                                </response>', XSD_ANYXML);
+            return new sendMessageResponse(new AsyncSendMessageResponse('asd','dsfg','fdgh','3211'));                                     
         } else if ($rand == 2) {
-			return new SoapFault("Server", "Сообщение об ошибке");
+            return new SoapFault("Server", "Сообщение об ошибке");
         }
     }
     
