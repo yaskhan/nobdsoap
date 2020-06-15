@@ -151,22 +151,47 @@ class ImportDataEgovServiceService extends \SoapClient
     {
         $dom = new DOMDocument();
         $dom->loadXML($request);
+        
+        $incCert = null;
+        $domPath = null;
+        
+        $tmp1 = $dom->getElementsByTagName('sendMessage')->item(0);
+        $tmp2 = $dom->getElementsByTagName('getMessages')->item(0);
+        $tmp3 = $dom->getElementsByTagName('sendDeliveryNotification')->item(0);
+        $tmp4 = $dom->getElementsByTagName('getMessageStatus')->item(0);
+        if(!empty($tmp1)) {
+            $incCert = true;
+            $domPath = 'typedRequestFormImportData';
+        } else if(!empty($tmp2)) {
+            $incCert = false;
+            $domPath = '';
+        } else if(!empty($tmp3)) {
+            $incCert = false;
+            $domPath = '';
+        } else if(!empty($tmp4)) {
+            $incCert = false;
+            $domPath = '';
+        }
+        
+        if(empty($incCert)) {
+            return $request;
+        }
 
-	$objDSig = new XMLSecurityDSig('ds');
-	$objDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
-	$objDSig->addReference($dom, XMLSecurityDSig::SHA1, ['http://www.w3.org/2000/09/xmldsig#enveloped-signature']);
-	$objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, ['type'=>'private']);
-	/* load private key */
-	$objKey->loadKey(PRIVATE_KEY, TRUE);
-	
-	/* if key has Passphrase, set it using $objKey->passphrase = <passphrase> " */
-	
-	$objDSig->sign($objKey);
-	
-	/* Add associated public key */
-	$objDSig->add509Cert(CERT_FILE, true, false, ['issuerSerial' => true, 'subjectName' => true]);
-	$objDSig->appendSignature($dom->getElementsByTagName('typedRequestFormImportData')->item(0));
-       
+        $objDSig = new XMLSecurityDSig('ds');
+        $objDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
+        $objDSig->addReference($dom, XMLSecurityDSig::SHA1, ['http://www.w3.org/2000/09/xmldsig#enveloped-signature']);
+        $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, ['type'=>'private']);
+        /* load private key */
+        $objKey->loadKey(PRIVATE_KEY, TRUE);
+        
+        /* if key has Passphrase, set it using $objKey->passphrase = <passphrase> " */
+        
+        $objDSig->sign($objKey);
+        
+        /* Add associated public key */
+        $objDSig->add509Cert(CERT_FILE, true, false, ['issuerSerial' => true, 'subjectName' => true]);
+        $objDSig->appendSignature($dom->getElementsByTagName($domPath)->item(0));
+        
         return $dom->saveXML();
     }
 }

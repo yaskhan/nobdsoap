@@ -11,3 +11,4 @@ Vagrantfile
 .php_cs.cache
 soap_.log
 composer.lock
+none

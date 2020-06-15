@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require 'other/ImportDataEgovServiceService.php';
 $loader = require 'vendor/autoload.php';
 spl_autoload_register(function ($class_name) {
@@ -51,13 +53,16 @@ try {
     $datatr->setServiceType('UNIVERSITY_ADMISSION');
     
     
-    
     $data = new MessageData($datatr);
     $req = new AsyncSendMessageRequest($inf, $data);
     $ret = $client->sendMessage(new sendMessage($req));
-    
-    echo($client->__getLastResponse());
-    
+    if(!empty($ret->response)) {
+        $ret = $client->getMessageStatus(new getMessageStatus(new AsyncGetMessageStatusRequest('171468168', date(DATE_ATOM), 
+                                    new SenderInfo('pep', '3d66f74fd48822744da1ff290dd7c6b3c664f833e0aaca3671f93eefbf0ba6c4'))));
+            var_dump($ret);
+    }
+    //echo($client->__getLastResponse());
+
 } catch(SoapFault $e){
     var_dump($e);
 }

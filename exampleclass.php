@@ -12,44 +12,30 @@ class TestSoapServer
     
     public function sendMessage()
     {
-        return new SoapVar('
-            <ns2:sendMessage
-                xmlns:ns2="http://bip.bee.kz/AsyncChannel/v10/Types">
-                <request>
-                    <messageInfo>
-                        <messageId>YzgtjaqW-TQvK-PqOu-57SN-70yBQmLZuZxv</messageId>
-                        <correlationId>2516623</correlationId>
-                        <serviceId>MON_ES_REQUEST_FORM_IMPORT</serviceId>
-                        <messageType>NOTIFICATION</messageType>
-                        <messageDate>2020-05-31T21:10:20+06:00</messageDate>
-                        <sender>
-                            <senderId>es</senderId>
-                            <password>es</password>
-                        </sender>
-                    </messageInfo>
-                    <messageData>
-                        <data>
-                            <typedRequestFormImportData>
-                                <importSource>ORLEU</importSource>
-                                <updatedValues>
-                                    <code>processing_status</code>
-                                    <values>
-                                        <domainItemData>
-                                            <code>IN_PROCESSING</code>
-                                            <kkValue>Өңделу ұстінде</kkValue>
-                                            <ruValue>В обработке</ruValue>
-                                        </domainItemData>
-                                    </values>
-                                </updatedValues>
-                                <externalRequestChainId>2516623</externalRequestChainId>
-                                <externalRequestId>10109001186066</externalRequestId>
-                                <processingStatus>IN_PROGRESS</processingStatus>
-                                <requesterIin>860717450455</requesterIin>
-                                <resolutionType>NO_RESOLUTION</resolutionType>
-                            </typedRequestFormImportData>
-                        </data>
-                    </messageData>
-                </request>
-            </ns2:sendMessage>', XSD_ANYXML);
+        $rand = random_int(1, 2);
+        if($rand == 1) {
+            return new SoapVar('<response>
+                                    <messageId>123</messageId>
+                                    <correlationId>23</correlationId>
+                                    <responseDate>33</responseDate>
+                                    <sessionId>5545454</sessionId>
+                                </response>', XSD_ANYXML);
+        } else if ($rand == 2) {
+			return new SoapFault("Server", "Сообщение об ошибке");
+        }
+    }
+    
+    public function getMessageStatus()
+    {
+        return new SoapVar('<response>
+                                <sessionId>2464f684-d085-45ac-b63e-9bc951696b39</sessionId>
+                                <messageState>1</messageState>
+                                <responseDate>2019-08-21T11:09:05.719+06:00</responseDate>
+                                <status>
+                                    <statusCode>200</statusCode>
+                                    <statusMessage>OK</statusMessage>
+                                    <statusDate>2019-08-21T11:09:05.719+06:00</statusDate>
+                                </status>
+			    </response>', XSD_ANYXML);
     }
 }
