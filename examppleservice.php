@@ -13,7 +13,7 @@ ini_set("soap.wsdl_cache_enabled", "0"); // отключаем кеширова�
 
 $options = ['uri' => "http://{$_SERVER['HTTP_HOST']}/examppleservice.php",
      'classmap' => 
-	   ['SenderInfo' => '\SenderInfo',
+      ['SenderInfo' => '\SenderInfo',
       'Property' => '\Property',
       'MessageData' => '\MessageData',
       'ErrorInfo' => '\ErrorInfo',

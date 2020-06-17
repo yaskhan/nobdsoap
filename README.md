@@ -29,4 +29,8 @@ https://compress.ru/article.aspx?id=10152
 
 https://github.com/robrichards/xmlseclibs
 
+https://legalacts.egov.kz/npa/view?id=1873816
+
+https://ru.qwe.wiki/wiki/XML_Signature
+
 

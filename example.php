@@ -3,7 +3,7 @@
 session_start();
 
 require 'other/ImportDataEgovServiceService.php';
-$loader = require 'vendor/autoload.php';
+require 'vendor/autoload.php';
 spl_autoload_register(function ($class_name) {
     include 'src/'. basename($class_name) . '.php';
 });
